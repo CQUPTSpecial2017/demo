@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -22,83 +23,67 @@ import java.util.List;
 
 public class FirstActivity extends AppCompatActivity {
 
-    private int imgIds[] = {R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
-            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.zhuanlun, R.drawable.zuanshi,
-
-            R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
-            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.zhuanlun, R.drawable.zuanshi,
-
-            R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
-            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.zhuanlun, R.drawable.zuanshi,};
-    private List<View> viewList = new ArrayList<>();
-    private List<String> mDataList =new ArrayList<>();
-    int currentPosition;
-
-
+//    private int imgIds[] = {,
+//
+//            R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
+//            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.zhuanlun, R.drawable.zuanshi,
+//
+//            R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
+//            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.zhuanlun, R.drawable.zuanshi,};
+//    private List<View> viewList = new ArrayList<>();
+//    private List<String> mDataList =new ArrayList<>();
+//    int currentPosition;
+    private float mPosX,mPosY,mCurPosX,mCurPosY;
+    private RingView ringView;
+    private ImageView leftImage,centerImage,rightImage;
+    private int imgIds[]={R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
+                R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.zhuanlun, R.drawable.zuanshi};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.first_viewpager);
-        for (int i = 0; i < imgIds.length; i++) {
-            final int position = i;
-            View rootView = View.inflate(FirstActivity.this, R.layout.pager_item, null);
-            ImageView imageView = (ImageView) rootView.findViewById(R.id.pager_iv);
-            imageView.setImageResource(imgIds[i]);
-            viewList.add(i, rootView);
-        }
-        viewPager.setAdapter(new MyAdapter());
-        viewPager.setOffscreenPageLimit(30);
-        viewPager.setPageMargin(0);
-        viewPager.setCurrentItem(13);
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            private int leftOrRight = 0;
-            private int mViewPagerIndex ;
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                //左滑
-                if (mViewPagerIndex==position){
-                    if (position>0){
-                        viewPager.getChildAt(position).setScaleX(1.3f + (0.8f - 1.3f) *positionOffset );
-                        viewPager.getChildAt(position).setScaleY(1.3f + (0.8f - 1.3f) *positionOffset );
-                        viewPager.getChildAt(position-1).setScaleX(0.8f + (1.3f - 0.8f) *positionOffset );
-                        viewPager.getChildAt(position-1).setScaleY(0.8f + (1.3f - 0.8f) * positionOffset);
-                    }
-                }
-                //右滑
-                else {
-                    if (position<imgIds.length){
-                        viewPager.getChildAt(position).setScaleX(1.3f + (0.8f - 1.3f) *positionOffset );
-                        viewPager.getChildAt(position).setScaleY(1.3f + (0.8f - 1.3f) *positionOffset );
-                        viewPager.getChildAt(position+1).setScaleX(0.8f + (1.3f - 0.8f) *positionOffset );
-                        viewPager.getChildAt(position+1).setScaleY(0.8f + (1.3f - 0.8f) * positionOffset);
-                    }
-                }
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-                currentPosition = position;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                if(state==1){//state有三种状态下文会将，当手指刚触碰屏幕时state的值为1，我们就在这个时候给mViewPagerIndex 赋值。
-                    mViewPagerIndex = viewPager.getCurrentItem();
-                }
-
-                if (state != ViewPager.SCROLL_STATE_IDLE) return;
-                if (currentPosition <=9 ) {
-                    viewPager.setCurrentItem(currentPosition+10,false);
-                } else if (currentPosition >= 20) {
-                    viewPager.setCurrentItem(currentPosition-10,false);
-                }
-            }
-
-
-        });
+//        final ViewPager viewPager = (ViewPager) findViewById(R.id.first_viewpager);
+//        for (int i = 0; i < imgIds.length; i++) {
+//            View rootView = View.inflate(FirstActivity.this, R.layout.pager_item, null);
+//            ImageView imageView = (ImageView) rootView.findViewById(R.id.pager_iv);
+//            imageView.setImageResource(imgIds[i]);
+//            viewList.add(i, rootView);
+//        }
+//        viewPager.setAdapter(new MyAdapter());
+//        viewPager.setOffscreenPageLimit(30);
+//        viewPager.setPageMargin(0);
+//        viewPager.setCurrentItem(13);
+//        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            private int leftOrRight = 0;
+//            private int mViewPagerIndex ;
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//                currentPosition = position;
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//                if(state==1){//state有三种状态下文会将，当手指刚触碰屏幕时state的值为1，我们就在这个时候给mViewPagerIndex 赋值。
+//                    mViewPagerIndex = viewPager.getCurrentItem();
+//                }
+//
+//                if (state != ViewPager.SCROLL_STATE_IDLE) return;
+//                if (currentPosition <=9 ) {
+//                    viewPager.setCurrentItem(currentPosition+10,false);
+//                } else if (currentPosition >= 20) {
+//                    viewPager.setCurrentItem(currentPosition-10,false);
+//                }
+//            }
+//
+//
+//        });
 //        final MagicIndicator magicIndicator = (MagicIndicator) findViewById(R.id.first_magic);
 //
 //        CommonNavigator commonNavigator = new CommonNavigator(this);
@@ -172,38 +157,79 @@ public class FirstActivity extends AppCompatActivity {
 //        });
 //
 //        magicIndicator.setNavigator(commonNavigator);
+        ringView = (RingView)findViewById(R.id.first_ring);
+        ringView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // TODO Auto-generated method stub
+                switch (event.getAction()) {
 
+                    case MotionEvent.ACTION_DOWN:
+                        mPosX = event.getX();
+                        mPosY = event.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        mCurPosX = event.getX();
+                        mCurPosY = event.getY();
 
+                        break;
+                    case MotionEvent.ACTION_UP:
+//                        if (mCurPosY - mPosY > 0
+//                                && (Math.abs(mCurPosY - mPosY) > 25)) {
+//                            //向下滑動
+//                            tiShi(mContext,"向下");
+//
+//                        } else if (mCurPosY - mPosY < 0
+//                                && (Math.abs(mCurPosY - mPosY) > 25)) {
+//                            //向上滑动
+//                            tiShi(mContext,"向上");
+//                        }
+                        if (mCurPosX - mPosX > 0
+                                && (Math.abs(mCurPosX - mPosX) > 25)) {
+                            centerImage.setImageResource(imgIds[ringView.startRightAnimation(mPosX,mCurPosX)]);
 
+                        } else if (mCurPosX - mPosX < 0
+                                && (Math.abs(mCurPosX - mPosX) > 25)) {
+                            centerImage.setImageResource(imgIds[ringView.startLeftAnimation(mPosX,mCurPosX)]);
+                        }
+                        break;
+                }
+                return true;
+            }
+
+        });
+        leftImage = (ImageView)findViewById(R.id.first_image_1);
+        centerImage = (ImageView)findViewById(R.id.first_image_2);
+        rightImage = (ImageView)findViewById(R.id.first_image_3);
 
     }
 
-    private class MyAdapter extends PagerAdapter {
-
-
-        @Override
-        public int getCount() {
-            return viewList.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            if (container.getChildAt(position)==null)
-            container.addView(viewList.get(position));
-            return viewList.get(position);
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView(viewList.get(position));
-        }
-
-    }
+//    private class MyAdapter extends PagerAdapter {
+//
+//
+//        @Override
+//        public int getCount() {
+//            return viewList.size();
+//        }
+//
+//        @Override
+//        public boolean isViewFromObject(View view, Object object) {
+//            return view == object;
+//        }
+//
+//        @Override
+//        public Object instantiateItem(ViewGroup container, int position) {
+//            if (container.getChildAt(position)==null)
+//            container.addView(viewList.get(position));
+//            return viewList.get(position);
+//        }
+//
+//        @Override
+//        public void destroyItem(ViewGroup container, int position, Object object) {
+//            container.removeView(viewList.get(position));
+//        }
+//
+//    }
 
 
 

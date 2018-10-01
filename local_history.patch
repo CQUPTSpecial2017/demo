@@ -1,0 +1,89 @@
+Index: app/src/main/java/com/example/demo/RingView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/demo/RingView.java	(revision )
++++ app/src/main/java/com/example/demo/RingView.java	(revision )
+@@ -91,14 +91,14 @@
+         itemWidthDp = 40;
+ 
+         for (int i = 0; i <7 ; i++) {
+-            if (i<=3)
++            if (i<3)
+                 x= i * dip2px(context,(allWidthDp/2-25)/3) + dip2px(context,5);
+             else if (i>3)
+                 x= width- (7-i) * dip2px(context,(allWidthDp/2-20)/3) +dip2px(context,20);
+             else
+                 x= dip2px(context,(allWidthDp/2-20)) ;
+ 
+-            if (i<=4){
++            if (i<=3){
+                 y=dip2px(context, i  * 6);
+             }else y=dip2px(context, 36 - i * 6);
+             xLocations.add(i,x);
+@@ -146,14 +146,12 @@
+         mCanvas = canvas;
+         resetParams();
+         if (!isFirst) {
+-            initShowImageId();
++            //initShowImageId();
+             //画初始图像
+             drawBackRound(mCanvas);
+             isFirst = !isFirst;
+         }
+-        else {
+ 
+-        }
+ 
+     }
+     private void drawChange(Canvas canvas) {
+@@ -166,15 +164,10 @@
+             matrix.postScale(currentDetail.getScaleWidths().get(i), currentDetail.getScaleHeights().get(i));
+             Bitmap resizedBitmap = Bitmap.createBitmap(OrgBitmap, 0, 0, OrgBitmap.getWidth(),
+                     OrgBitmap.getHeight(), matrix, true);
+-            if (i == 0 || i == 8)
+-                continue;
+-            if (i <= 4) {
+-                canvas.drawBitmap(resizedBitmap,
++
++
++            canvas.drawBitmap(resizedBitmap,
+                         currentDetail.getxLocations().get(i), currentDetail.getyLocations().get(i), paint);
+-            } else {
+-                canvas.drawBitmap(resizedBitmap,
+-                        xLocations.get(i), dip2px(context, 36 - i * 6), paint);
+-            }
+         }
+     }
+ 
+@@ -192,8 +185,8 @@
+         paint.setAntiAlias(true);
+ 
+         for (int i = 0; i <xLocations.size() ; i++) {
+-            Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
+-            if (i!=4) {
++            Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), imageId[i]);
++            if (i!=3) {
+                 scaleWidths.add(i,(float) dip2px(context, 30) / OrgBitmap.getWidth());
+                 scaleHeights.add(i,(float) dip2px(context, 30) / OrgBitmap.getHeight());
+             }else {
+@@ -204,15 +197,9 @@
+             matrix.postScale(scaleWidths.get(i),scaleHeights.get(i));
+             Bitmap resizedBitmap = Bitmap.createBitmap(OrgBitmap, 0, 0, OrgBitmap.getWidth(),
+                     OrgBitmap.getHeight(), matrix, true);
+-            if (i==0||i==8)
+-                continue;
+-            if (i<=4) {
+-                canvas.drawBitmap(resizedBitmap,
+-                        xLocations.get(i), yLocations.get(i), paint);
+-            }else {
+-                canvas.drawBitmap(resizedBitmap,
+-                        xLocations.get(i), yLocations.get(i), paint);
+-            }
++            canvas.drawBitmap(resizedBitmap,
++                    xLocations.get(i), yLocations.get(i), paint);
++
+ 
+ 
+ 

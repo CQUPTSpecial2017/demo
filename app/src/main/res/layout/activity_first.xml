@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.demo.FirstActivity"
     android:clipChildren="false"
-    android:layerType="software"
     android:id="@+id/first_relative">
 
     <android.support.v7.widget.CardView
@@ -15,93 +14,129 @@
         app:cardCornerRadius="5dp"
         android:id="@+id/first_card"
         >
-        <LinearLayout
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:background="@drawable/head_background">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/deepblue_to_blue"
-                android:foreground="@drawable/jinbi"
-                android:layout_gravity="center_vertical"
-                />
-            <com.example.demo.StrokeTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="998"
-                android:textStyle="bold"
-                android:textColor="#fff"
-                android:textSize="14sp"
-                android:layout_gravity="center_vertical"/>
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/deepblue_to_blue"
-                android:foreground="@drawable/time"
-                android:layout_gravity="center_vertical"
-                />
-            <com.example.demo.StrokeTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="3"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:layout_gravity="center_vertical"/>
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/deepblue_to_blue"
-                android:foreground="@drawable/xiong"
-                android:layout_gravity="center_horizontal"
-                />
-        </LinearLayout>
+            android:background="@drawable/head_background"/>
 
 
     </android.support.v7.widget.CardView>
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/head_background">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/deepblue_to_blue"
+            android:foreground="@drawable/jinbi"
+            android:layout_gravity="center_vertical"
+            />
+        <com.example.demo.StrokeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="998"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/deepblue_to_blue"
+            android:foreground="@drawable/time"
+            android:layout_gravity="center_vertical"
+            />
+        <com.example.demo.StrokeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="3"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/deepblue_to_blue"
+            android:foreground="@drawable/xiong"
+            android:layout_gravity="center_horizontal"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/hua"
+            android:layout_gravity="center_vertical"
+            />
+        <com.example.demo.StrokeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="60895"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/zhuanlun"
+            android:layout_gravity="center_vertical"
+            />
+        <com.example.demo.StrokeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="2"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/first_image_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/first_card"
         android:layout_marginTop="3dp"
         android:background="#fff">
         <ImageView
+            android:id="@+id/first_image_1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@drawable/leftimage"/>
         <ImageView
+            android:id="@+id/first_image_2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@drawable/centerimage"/>
         <ImageView
+            android:id="@+id/first_image_3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@drawable/rightimage"
+            android:foreground="@drawable/zhuanpan"/>
     </LinearLayout>
 
-    <net.lucode.hackware.magicindicator.MagicIndicator
-        android:id="@+id/first_magic"
+    <com.example.demo.RingView
+        android:id="@+id/first_ring"
+        android:layout_below="@+id/first_image_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/first_image_layout"
-        >
-
-    </net.lucode.hackware.magicindicator.MagicIndicator>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/first_viewpager"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:clipChildren="false"
-        android:layout_marginLeft="170dp"
-        android:layout_marginRight="170dp"></android.support.v4.view.ViewPager>
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/di">
+    </com.example.demo.RingView>
 </RelativeLayout>
